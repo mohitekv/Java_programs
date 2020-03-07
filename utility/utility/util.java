@@ -2,7 +2,7 @@ package utility;
 
 public class util {
 
-    //calculating day by using formulas
+    // calculating day by using formulas
     public int day_of_week(int month, int day, int year) {
         int y = year - ((14 - month) / 12);
         int x = y + y / 4 - y / 100 + y / 400;
@@ -11,17 +11,17 @@ public class util {
         return d;
     }
 
-    //method to convert cel temp to fah temp
+    // method to convert cel temp to fah temp
     public double cel_to_fah(Double temp) {
         return ((temp * 9 / 5) + 32);
     }
 
-    //method to convert fah temp inti cel temp
+    // method to convert fah temp inti cel temp
     public double fah_to_cel(double temp) {
         return ((temp - 32) * 5 / 9);
     }
 
-    //method to convert decimal to binary
+    // method to convert decimal to binary
     public void binary(int num) {
         int b[] = new int[10];
         int j = 0;
@@ -36,9 +36,9 @@ public class util {
             System.out.print(b[i] + "  ");
     }
 
-    //convert deminal to binary
-    //diving binary array into nibbles and swap them
-    //from generated swap nibbles convert the binary to decimal
+    // convert deminal to binary
+    // diving binary array into nibbles and swap them
+    // from generated swap nibbles convert the binary to decimal
     public int swap_nibbles(int num) {
 
         int b[] = new int[10];
@@ -78,5 +78,27 @@ public class util {
         }
         return result;
 
+    }
+
+    //compute the square root of a nonnegative number 
+    //given in the input using Newton's method
+    public double squrt(int number) {
+        double t = number;
+        t = (number / t + t) / 2;
+        double epsilon = (double) (t * (1 * Math.pow(10, -15)));
+        while (Math.abs(t - number / t) > epsilon) {
+            t = (double) (number / t + t) / 2;
+        }
+        // System.out.println("Square root of " + number + " is " + t);
+        return t;
+    }
+
+    public double monthlyPayment(int year, int principal, double intrest)
+    {
+        double r = (double) (intrest / (12 * 100));
+        int n = 12 * year;
+        double deno = (double) (1 - Math.pow((1 + r), (-n)));
+        double payment = (double) (principal * r / deno);
+        return payment;
     }
 }
