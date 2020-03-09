@@ -7,6 +7,9 @@ public class TicTacToe {
     public static char board[][] = new char[3][3];
     public static int count = 0;
 
+    // Displays Empty board
+    // *********************************************************************************************
+    // */
     public static void Board() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -17,6 +20,8 @@ public class TicTacToe {
         }
     }
 
+    // Display function
+    /**************************************************************************************************** */
     public static void display_board() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -29,12 +34,17 @@ public class TicTacToe {
 
     }
 
+    /************************************************************************************************* */
+    // Function Checking for tie condition
     public static void tie_condition() {
         if (count == 9) {
             System.out.println("Game is tie");
         }
     }
 
+    /******************************************************************************************************** */
+    // Function for placing computer value if there is a wining possibility//
+    // Row Colunm and diagonal check Condition
     public static void computer_win_condition() {
         // System.out.println("computer turn:");
         int x = (int) (Math.random() * (3 - 0));
@@ -148,6 +158,9 @@ public class TicTacToe {
 
     }
 
+    /****************************************************************************************************** */
+    // Function for placing computer value if there is a blocking possibility//
+    // Row Colunm and diagonal check Condition
     public static void computer_block_condition() {
 
         int x = (int) (Math.random() * (3 - 0));
@@ -266,6 +279,9 @@ public class TicTacToe {
 
     }
 
+    /************************************************************************************************** */
+    // Function to check for winner
+
     public static void check_winner() {
         for (int i = 0; i < 3; i++) {
             int j = 0;
@@ -311,6 +327,8 @@ public class TicTacToe {
         }
     }
 
+    /*********************************************************************************************************** */
+    // function for player Turn
     public static void playerTurn() {
 
         if (count == 9) {
@@ -323,23 +341,30 @@ public class TicTacToe {
         int x = scanner.nextInt();
         int y = scanner.nextInt();
 
-        // char space = '-';
-        if (board[x][y] == '-') {
-            System.out.println("Player turn:");
-            board[x][y] = player;
-            display_board();
-            count++;
-            check_winner();
-            tie_condition();
-            System.out.println("computer turn:");
-            computerTurn();
-        } else {
-            System.out.println("Place already occupied:");
+        if (x > 2 || y > 2) {
+            System.out.println("Invalid input");
             playerTurn();
+        } else {
+            // char space = '-';
+            if (board[x][y] == '-') {
+                System.out.println("Player turn:");
+                board[x][y] = player;
+                display_board();
+                count++;
+                check_winner();
+                tie_condition();
+                System.out.println("computer turn:");
+                computerTurn();
+            } else {
+                System.out.println("Place already occupied:");
+                playerTurn();
+            }
         }
 
     }
 
+    /************************************************************************************************************* */
+    // Function for computer turn
     public static void computerTurn() {
         if (count == 9) {
             // System.out.println(count);
@@ -352,6 +377,8 @@ public class TicTacToe {
 
     }
 
+    /********************************************************************************************************* */
+    // Function for Letter choice and toss
     public static void choice() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter 'X' or 'O' to start:");
@@ -378,6 +405,8 @@ public class TicTacToe {
 
     }
 
+    /******************************************************************************************* */
+    // Main function
     public static void main(String arg[]) {
         Board();
         choice();
